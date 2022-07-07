@@ -115,11 +115,4 @@ for line in f:
 # Run comparisons.
 python_0 = pythonResults[1.0]
 fortran_0 = fortranResults
-
 compareResults(python_0, fortran_0, EPS)
-"""print("\n")
-print(haloMasses)
-print("\n")
-print(python_0)
-print("\n")
-print(fortran_0)"""
