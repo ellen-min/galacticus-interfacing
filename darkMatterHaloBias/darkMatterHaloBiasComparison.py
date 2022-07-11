@@ -4,7 +4,7 @@
 
 colossusResults = {0.0: [0.734267, 0.753420, 0.789104, 0.850877, 0.954963, 1.130743, 1.433610, 1.975495, 3.004984, 5.112369],
                   0.5: [0.779165, 0.824471, 0.896504, 1.010418, 1.192284, 1.489924, 1.994336, 2.890808, 4.593047, 8.087258],
-                  1.0: [0.864914, 0.945736, .067630, 1.253988, 1.545425, 2.017001, 2.812343, 4.225198, 6.913473, 12.449322]}
+                  1.0: [0.864914, 0.945736, 1.067630, 1.253988, 1.545425, 2.017001, 2.812343, 4.225198, 6.913473, 12.449322]}
 
 # -------------------------------------------- RUN PYTHON --------------------------------------------
 import galacticus
@@ -39,18 +39,21 @@ haloMasses = [10000000000.0, 35938140000, 129155000000,
               21544350000000, 77426370000000, 278255900000000,
               1000000000000000.0]
 
+adjustedHubbleConstant = 0.6774
+
 pythonResults = {}
 for redshift in redshifts:
   expansionFactor = cosmologyFunctions.expansionFactorFromRedshift(redshift)
   time = cosmologyFunctions.cosmicTime(expansionFactor)
   outputs = []
   for mass in haloMasses:
+    mass /= adjustedHubbleConstant #Adjust
     bias = darkMatterHaloBias.biasByMass(mass, time)
     outputs.append(bias)
   pythonResults[redshift] = outputs
 
 # -------------------------------------------- COMPARISONS --------------------------------------------
-EPS = 1
+EPS = 1e-2
 
 def compareResults(l1, l2, eps, redshift):
   """
@@ -71,4 +74,5 @@ def compareResults(l1, l2, eps, redshift):
 for redshift in redshifts:
   pythonResult = pythonResults[redshift]
   fortranResult = colossusResults[redshift]
+  print(pythonResult)
   compareResults(pythonResult, fortranResult, EPS, redshift)
