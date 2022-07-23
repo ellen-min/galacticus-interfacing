@@ -56,7 +56,7 @@ class nodeComponentBasicL:
   def nodeComponentBasicSetTimeL(self, time):
     self._time = time
     c_lib.nodeComponentBasicSetTimeL(self._glcObj, time)
-  
+   
   def nodeComponentBasicSetTimeLastIsolatedL(self, timeLastIsolated):
     self._timeLastIsolated = timeLastIsolated
     c_lib.nodeComponentBasicSetTimeLastIsolatedL(self._glcObj, timeLastIsolated)
