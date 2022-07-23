@@ -31,7 +31,7 @@ my $directiveLocations = $xml->XMLin($ENV{'BUILDPATH'}."/directiveLocations.xml"
 # Get state storable information .
 my $stateStorables     = $xml->XMLin($ENV{'BUILDPATH'}."/stateStorables.xml"    );
 
-# Get the list of functionClasses that should be compiled into the library.
+# Get the list of functionClasses that should be compiled into the library. 
 my $libraryFunctionClasses = $xml->XMLin($ENV{'GALACTICUS_EXEC_PATH'}."/source/libraryClasses.xml");
 
 # Augment function class list with required information.
