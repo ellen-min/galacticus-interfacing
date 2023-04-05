@@ -1,1 +1,2 @@
-# fortran-python interfacing and testing for galacticus software.
+# Fortran-Python interfacing and testing for GALACTICUS software.
+
